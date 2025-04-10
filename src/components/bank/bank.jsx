@@ -13,6 +13,7 @@ function Bank() {
   
     // CREATES NEW USER ============================================================================================================//
     const createUser = (event) => {
+
       event.preventDefault();
       const userObj = {
         id: users.length + 1,
@@ -20,6 +21,7 @@ function Bank() {
         email: newUser.email,
         password: newUser.password,
         balance: Math.max(parseFloat(newUser.initialBalance) || 0, 0)
+
       };
   
       setUsers([...users, userObj]);
@@ -27,21 +29,23 @@ function Bank() {
       notify('User created successfully');
     };
 
-    const notify = (message, isError) => {
-        setMessages({ ...messages, [isError ? 'error' : 'success']: message });
-        setTimeout(() => setMessages({ ...messages, [isError ? 'error' : 'success']: '' }), 3000);
-          };
+    const notify = (message, Error) => {
+
+        setMessages({ ...messages, [Error ? 'error' : 'success']: message });
+        setTimeout(() => setMessages({ ...messages, [Error ? 'error' : 'success']: '' }));
+
+        };
   
     // Handles all transaction types ===============================================================================================//
-    const processTransaction = (e) => {
-      e.preventDefault();
+    const processTransaction = (event) => {
+
+      event.preventDefault();
       const amount = parseFloat(transaction.amount);
       const updatedUsers = [...users];
       const fromUserIndex = users.findIndex(user => user.email === transaction.fromUser);
       
       if (fromUserIndex === -1) return notify('User does not exist', true);
       
-    // Processes different transaction types ======================================================================================//
       if (transaction.type === 'deposit') {
 
         updatedUsers[fromUserIndex].balance += amount;
@@ -71,15 +75,18 @@ function Bank() {
       setTransaction({ type: 'deposit', amount: '', fromUser: '', toUser: '' });
     };
 
-    // FORM FIELDS for Create New Account ==========================================================================================//
+    // FORM FIELDS for "Create New Account" ==========================================================================================//
     const userFields = [
+
       { id: 'name', label: 'Full Name:', type: 'text' },
       { id: 'email', label: 'Email Address:', type: 'email' },
       { id: 'password', label: 'Password:', type: 'password' },
       { id: 'initialBalance', label: 'Initial Balance (PHP):', type: 'number', min: "0", required: false }
+
     ];
   
     return (
+
       <div className="app-container">
         <header><h1>Banking App</h1></header>
   
@@ -87,7 +94,7 @@ function Bank() {
         {messages.success && <div className="success-message">{messages.success}</div>}
   
         <div className="dashboard-layout">
-          {/* Users table */}
+          {/* ALL ACCOUNTS TABLE */}
           <div className="dashboard-panel users-panel">
             <h2>All Accounts</h2>
             <table className="users-table">
@@ -96,16 +103,16 @@ function Bank() {
                 {users.map(user => (
                   <tr key={user.id}>
                     <td>{user.id}</td><td>{user.name}</td><td>{user.email}</td>
-                    <td>PHP {user.balance.toFixed(2)}</td>
+                    <td>PHP {user.balance}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
   
-          {/* Forms panel */}
+          {/* FORMS PANEL */}
           <div className="dashboard-panel forms-panel">
-            {/* Create User Form */}
+            {/* CREATE NEW ACCOUNT FORM */}
             <div className="form-container">
               <h2>Create New Account</h2>
               <form onSubmit={createUser}>
@@ -116,7 +123,7 @@ function Bank() {
                       type={field.type} 
                       id={field.id}
                       value={newUser[field.id]}
-                      onChange={(e) => handleChange(setNewUser, newUser, field.id, e.target.value)}
+                      onChange={(event) => handleChange(setNewUser, newUser, field.id, event.target.value)}
                       required={field.required !== false}
                       min={field.min}
                     />
@@ -126,7 +133,7 @@ function Bank() {
               </form>
             </div>
   
-            {/* Transaction Form */}
+            {/* ACCOUNT TRANSACTIONS FORM */}
             <div className="form-container">
               <h2>Account Transactions</h2>
               <form onSubmit={processTransaction}>
@@ -135,7 +142,7 @@ function Bank() {
                   <select 
                     id="transactionType"
                     value={transaction.type}
-                    onChange={(e) => handleChange(setTransaction, transaction, 'type', e.target.value)}
+                    onChange={(event) => handleChange(setTransaction, transaction, 'type', event.target.value)}
                   >
                     <option value="deposit">Deposit</option>
                     <option value="withdraw">Withdraw</option>
@@ -147,7 +154,7 @@ function Bank() {
                   <label htmlFor="amount">Amount (PHP):</label>
                   <input 
                     type="number" id="amount" value={transaction.amount}
-                    onChange={(e) => handleChange(setTransaction, transaction, 'amount', e.target.value)}
+                    onChange={(event) => handleChange(setTransaction, transaction, 'amount', event.target.value)}
                     min="0.01" step="0.01" required
                   />
                 </div>
@@ -158,13 +165,13 @@ function Bank() {
                   </label>
                   <select 
                     id="fromUser" value={transaction.fromUser}
-                    onChange={(e) => handleChange(setTransaction, transaction, 'fromUser', e.target.value)}
+                    onChange={(event) => handleChange(setTransaction, transaction, 'fromUser', event.target.value)}
                     required
                   >
                     <option value="">Select Account</option>
                     {users.map(user => (
                       <option key={user.id} value={user.email}>
-                        {user.name} ({user.email}) - PHP {user.balance.toFixed(2)}
+                        {user.name} ({user.email}) - PHP {user.balance}
                       </option>
                     ))}
                   </select>
@@ -175,19 +182,19 @@ function Bank() {
                     <label htmlFor="toUser">To Account:</label>
                     <select 
                       id="toUser" value={transaction.toUser}
-                      onChange={(e) => handleChange(setTransaction, transaction, 'toUser', e.target.value)}
+                      onChange={(event) => handleChange(setTransaction, transaction, 'toUser', event.target.value)}
                       required
                     >
                       <option value="">Select Account</option>
                       {users.map(user => (
                         <option key={user.id} value={user.email}>
-                          {user.name} ({user.email}) - PHP {user.balance.toFixed(2)}
+                          {user.name} ({user.email}) - PHP {user.balance}
                         </option>
                       ))}
                     </select>
                   </div>
                 )}
-  
+
                 <button type="submit" className="btn-submit">
                   {transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)} Funds
                 </button>
@@ -196,6 +203,7 @@ function Bank() {
           </div>
         </div>
       </div>
+
     );
 }
 
