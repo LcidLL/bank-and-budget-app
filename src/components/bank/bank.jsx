@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../bank/bank.css'
 
 function Bank() {
     const [users, setUsers] = useState([
