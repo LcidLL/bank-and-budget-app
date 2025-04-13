@@ -16,7 +16,7 @@ function Bank() {
     const createUser = (event) => {
 
       event.preventDefault();
-      const userObj = {
+      const userInfo = {
         id: users.length + 1,
         name: newUser.name,
         email: newUser.email,
@@ -25,7 +25,7 @@ function Bank() {
 
       };
   
-      setUsers([...users, userObj]);
+      setUsers([...users, userInfo]);
       setNewUser({ name: '', email: '', password: '', initialBalance: 0 });
       notify('User created successfully');
     };
@@ -33,7 +33,6 @@ function Bank() {
     const notify = (message, Error) => {
 
         setMessages({ ...messages, [Error ? 'error' : 'success']: message });
-        setTimeout(() => setMessages({ ...messages, [Error ? 'error' : 'success']: '' }));
 
         };
   
@@ -95,9 +94,9 @@ function Bank() {
         {messages.success && <div className="success-message">{messages.success}</div>}
   
         <div className="dashboard-layout">
-          {/* ALL ACCOUNTS TABLE */}
+          {/* ACCOUNT DETAILS TABLE */}
           <div className="dashboard-panel users-panel">
-            <h2>All Accounts</h2>
+            <h2>Account Details</h2>
             <table className="users-table">
               <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Balance</th></tr></thead>
               <tbody>
