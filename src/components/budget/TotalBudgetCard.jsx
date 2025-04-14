@@ -1,4 +1,4 @@
-import { useBudgets } from "../../context/BudgetsContext";
+import { useBudgets } from "../../assets/context/BudgetsContext";
 import BudgetCard from "./BudgetCard";
 
 export default function TotalBudgetCard() {

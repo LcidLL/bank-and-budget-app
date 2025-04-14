@@ -1,4 +1,4 @@
-import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../../context/BudgetsContext";
+import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../../assets/context/BudgetsContext";
 import BudgetCard from "./BudgetCard";
 
 export default function UncategorizedBudgetCard(props) {

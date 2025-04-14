@@ -9,7 +9,7 @@ import BudgetCard from '../components/budget/BudgetCard';
 import TotalBudgetCard from '../components/budget/TotalBudgetCard';
 import UncategorizedBudgetCard from '../components/budget/UncategorizedBudgetCard';
 import ViewExpensesModal from '../components/budget/ViewExpensesModal';
-import { UNCATEGORIZED_BUDGET_ID, useBudgets } from '../context/BudgetsContext';
+import { UNCATEGORIZED_BUDGET_ID, useBudgets } from '../assets/context/BudgetsContext';
 
 function BudgetPage() {
   const [showAddBudgetModal, setShowBudgetModal] = useState(false);

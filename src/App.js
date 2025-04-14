@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Bank from './components/bank/bank.jsx';
-import BudgetPage from './pages/BudgetPage.jsx';
+import BudgetPage from './pages/Budget.jsx';
 
 function App() {
   return (

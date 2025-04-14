@@ -1,5 +1,5 @@
 import { Button, Card, ProgressBar, Stack } from "react-bootstrap";
-import { currencyFormatter } from "../../utils/CurrencyFormatter";
+import { currencyFormatter } from "../../assets/utils/CurrencyFormatter";
 
 function getProgressBarVariant(amount, max) {
     const ratio = amount / max;

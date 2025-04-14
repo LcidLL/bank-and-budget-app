@@ -1,6 +1,6 @@
 import { Button, Modal, Stack } from "react-bootstrap"; 
-import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../../context/BudgetsContext";
-import { currencyFormatter } from "../../utils/CurrencyFormatter";
+import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../../assets/context/BudgetsContext";
+import { currencyFormatter } from "../../assets/utils/CurrencyFormatter";
 
 
 export default function ViewExpensesModal({ budgetId, handleClose }) {
