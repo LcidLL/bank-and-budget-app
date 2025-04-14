@@ -88,7 +88,11 @@ function Bank() {
     return (
 
       <div className="app-container">
-        <header><h1>Banking App</h1></header>
+        <header>
+          <h1>BANKING APP</h1>
+          <button className="btn-budget"><a href='../budget/Budget.jsx' target='_blank' className="budget-link">Budget App</a></button>
+        </header>
+        
   
         {messages.error && <div className="error-message">{messages.error}</div>}
         {messages.success && <div className="success-message">{messages.success}</div>}
