@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../bank/bank.css'
 
 function Bank() {
@@ -11,6 +12,7 @@ function Bank() {
     const [newUser, setNewUser] = useState({ name: '', email: '', initialBalance: 0 });
     const [transaction, setTransaction] = useState({ type: 'deposit', amount: '', fromUser: '', toUser: '' });
     const handleChange = (setter, obj, field, value) => setter({ ...obj, [field]: value });
+    const navigate = useNavigate();
   
     // CREATES NEW USER ============================================================================================================//
     const createUser = (event) => {
@@ -88,7 +90,7 @@ function Bank() {
       <div className="app-container">
         <header>
           <h1>BANKING APP</h1>
-          <button className="btn-budget"><a href='../budget/Budget.jsx' target='_blank' className="budget-link">Budget App</a></button>
+          <button className="btn-budget" onClick={() => navigate('/budget')}>Budget App</button>
         </header>
         
   

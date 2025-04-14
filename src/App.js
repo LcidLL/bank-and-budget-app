@@ -1,13 +1,19 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Bank from './components/bank/bank.jsx';
 import BudgetPage from './pages/BudgetPage.jsx';
 
 function App() {
   return (
     <div className="App">
-      <Bank />
-      <BudgetPage />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Bank />} />
+          <Route path="/budget" element={<BudgetPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
+    
   );
 }
 

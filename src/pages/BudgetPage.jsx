@@ -9,6 +9,7 @@ import TotalBudgetCard from '../components/budget/TotalBudgetCard';
 import UncategorizedBudgetCard from '../components/budget/UncategorizedBudgetCard';
 import ViewExpensesModal from '../components/budget/ViewExpensesModal';
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from '../context/BudgetsContext';
+import { useNavigate } from 'react-router-dom';
 
 function BudgetPage() {
   const [showAddBudgetModal, setShowBudgetModal] = useState(false);
@@ -16,6 +17,7 @@ function BudgetPage() {
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState();
   const [addExpenseModalBudgetId, setAddExpenseModalBudgetId] = useState();
   const { budgets, getBudgetExpenses } = useBudgets(); 
+  const navigate = useNavigate();
 
   function openAddExpenseModal(budgetId) {
     setShowExpenseModal(true);
@@ -30,7 +32,7 @@ function BudgetPage() {
           <h1 className="me-auto">Budget App</h1>
           <Button variant="primary" onClick={() => setShowBudgetModal(true)}>Add Budget</Button>
           <Button variant="outline-primary" onClick={openAddExpenseModal}>Add Expense</Button>
-          <Button variant="success">Bank App</Button>
+          <Button variant="success" onClick={() => navigate('/')}>Bank App</Button>
         </Stack>
         <div className="btnContainer">
           {budgets.map(budget => {
