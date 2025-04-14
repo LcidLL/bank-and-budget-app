@@ -8,7 +8,7 @@ function Bank() {
     ]);
     
     const [messages, setMessages] = useState({ error: '', success: '' });
-    const [newUser, setNewUser] = useState({ name: '', email: '', password: '', initialBalance: 0 });
+    const [newUser, setNewUser] = useState({ name: '', email: '', initialBalance: 0 });
     const [transaction, setTransaction] = useState({ type: 'deposit', amount: '', fromUser: '', toUser: '' });
     const handleChange = (setter, obj, field, value) => setter({ ...obj, [field]: value });
   
@@ -20,13 +20,12 @@ function Bank() {
         id: users.length + 1,
         name: newUser.name,
         email: newUser.email,
-        password: newUser.password,
         balance: Math.max(parseFloat(newUser.initialBalance) || 0, 0)
 
       };
   
       setUsers([...users, userInfo]);
-      setNewUser({ name: '', email: '', password: '', initialBalance: 0 });
+      setNewUser({ name: '', email: '', initialBalance: 0 });
       notify('User created successfully');
     };
 
@@ -80,7 +79,6 @@ function Bank() {
 
       { id: 'name', label: 'Full Name:', type: 'text' },
       { id: 'email', label: 'Email Address:', type: 'email' },
-      { id: 'password', label: 'Password:', type: 'password' },
       { id: 'initialBalance', label: 'Initial Balance (PHP):', type: 'number', min: "0", required: false }
 
     ];
