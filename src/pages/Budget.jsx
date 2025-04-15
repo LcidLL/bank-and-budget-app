@@ -26,15 +26,15 @@ function BudgetPage() {
   }
 
   return ( 
-    <>
-      <Container className="my-2">
-        <Stack direction="horizontal" gap="2" className="mb-4">
-          <h1 className="me-auto">Budget App</h1>
-          <Button variant="primary" onClick={() => setShowBudgetModal(true)}>Add Budget</Button>
-          <Button variant="outline-primary" onClick={openAddExpenseModal}>Add Expense</Button>
-          <Button variant="success" onClick={() => navigate('/')}>Bank App</Button>
+    <div className="mainContainer">
+      <Container className="my-1">
+        <Stack direction="horizontal" gap="2" className="mb-4 border-bottom border-black">
+          <h1 className="me-auto mt-2">Budget App</h1>
+          <Button size="sm" variant="primary" onClick={() => setShowBudgetModal(true)}>Add Budget</Button>
+          <Button size="sm" variant="outline-danger" onClick={openAddExpenseModal}>Add Expense</Button>
+          <Button size="sm" variant="success" onClick={() => navigate('/')}>Bank App</Button>
         </Stack>
-        <div className="btnContainer">
+        <div className="cardContainer">
           {budgets.map(budget => {
               const amount = getBudgetExpenses(budget.id).reduce(
                 (total, expense) => total + expense.amount, 0
@@ -57,7 +57,7 @@ function BudgetPage() {
       <AddBudgetModal show={showAddBudgetModal} handleClose={() => setShowBudgetModal(false)} />
       <AddExpenseModal show={showAddExpenseModal} defaultBudgetId={addExpenseModalBudgetId} handleClose={() => setShowExpenseModal(false) } />
       <ViewExpensesModal budgetId={viewExpensesModalBudgetId} handleClose={() => setViewExpensesModalBudgetId() } />
-    </>
+    </div>
   )
 }
 

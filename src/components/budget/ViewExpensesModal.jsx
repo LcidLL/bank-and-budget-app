@@ -8,7 +8,7 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
     const expenses = getBudgetExpenses(budgetId);
     const budget = 
     UNCATEGORIZED_BUDGET_ID === budgetId 
-    ? { name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID } 
+    ? { name: "No Category", id: UNCATEGORIZED_BUDGET_ID } 
     : budgets.find(b => b.id === budgetId)
 
     return (
@@ -22,7 +22,7 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
                         onClick={() => {
                             deleteBudget(budget)
                             handleClose()
-                        }} variant="outline-danger">Delete</Button>
+                        }} variant="outline-danger" size="sm">Delete</Button>
                     )}
                 </Stack>
             </Modal.Title>
